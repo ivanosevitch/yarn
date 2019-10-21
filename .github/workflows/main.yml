@@ -1,0 +1,19 @@
+name: build
+on: push
+jobs:
+  install:
+    name: Install yarn
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - run: yarn
+      - uses: actions/upload-artifact@master
+        with:
+          name: node_modules
+          path: node_modules
+  get_node_modules:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@master
+        with:
+          name: node_modules
